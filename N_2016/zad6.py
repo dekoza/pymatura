@@ -18,7 +18,7 @@ def cezar(napis: str, klucz: int) -> str:
 ### Poniżej wersja wymagająca Pythona 3.8
 
 # def cezar(napis: str, klucz: int) -> str:
-#     klucz %= 26
+#     klucz = (-1 * (klucz < 0) or 1) * (abs(klucz) % 26)
 #
 #     return ''.join(chr((num:=ord(l) + klucz) + 26 * ((num < ord('A')) - (num > ord('Z')))) for l in napis.upper())
 
@@ -34,6 +34,7 @@ def podpunkt_2():
             try:
                 szyfr, klucz = linia.strip().split()
             except ValueError:  # plik źródłowy zawiera błędne linie bez klucza
+                print(f"Błędne dane: {linia}")
                 continue
             wyniki.write(f"{cezar(szyfr, -int(klucz))}\n")
 
@@ -41,12 +42,15 @@ def podpunkt_2():
 def podpunkt_3():
     with open('dane_6_3.txt') as dane, open('wyniki_6_3.txt', 'w') as wyniki:
         for linia in dane:
-            if linia.strip():
+            try:
                 wyraz, szyfr = linia.strip().split()
-                klucz = ord(szyfr[0]) - ord(wyraz[0])
-                spr = cezar(wyraz, klucz)
-                if spr != szyfr:
-                    wyniki.write(f'{wyraz}\n')
+            except ValueError:
+                print(f"Błędne dane: {linia}")
+                continue
+            klucz = ord(szyfr[0]) - ord(wyraz[0])
+            spr = cezar(wyraz, klucz)
+            if spr != szyfr:
+                wyniki.write(f'{wyraz}\n')
 
 
 if __name__ == '__main__':
