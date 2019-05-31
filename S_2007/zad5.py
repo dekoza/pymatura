@@ -5,7 +5,7 @@ import math
 class SitoE:
     "Sito Eratostenesa"
 
-    def __init__(self, nmax):
+    def __init__(self, nmax: int):
         self._nmax = nmax
         self._cache = {i: True for i in range(2, nmax + 1)}
         g = int(math.sqrt(nmax)) + 1
@@ -17,7 +17,7 @@ class SitoE:
                     self._cache[w] = False
                     w += i
 
-    def __contains__(self, item):
+    def __contains__(self, item: int) -> bool:
         # pozwala użyć operatora 'in' do sprawdzenia, czy liczba jest pierwsza
         if not isinstance(item, int):
             raise TypeError(f'Nieprawidłowy typ ({type(item)})')
@@ -29,15 +29,15 @@ class SitoE:
 sito = SitoE(1006700)
 
 
-def suprime(liczba):
+def suprime(liczba: int) -> bool:
     return liczba in sito and sum(int(i) for i in str(liczba)) in sito
 
 
-def suBrime(liczba):
+def suBrime(liczba: int) -> bool:
     return suprime(liczba) and sum(int(i) for i in f'{liczba:b}') in sito
 
 
-def ile_suBrimes(start, stop):
+def ile_suBrimes(start: int, stop: int) -> int:
     return sum(1 for i in range(start, stop + 1) if suBrime(i))
 
 
