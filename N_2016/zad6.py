@@ -31,12 +31,11 @@ def podpunkt_1():
 def podpunkt_2():
     with open('dane_6_2.txt') as dane, open('wyniki_6_2.txt', 'w') as wyniki:
         for linia in dane:
-            if linia.strip():
-                try:
-                    szyfr, klucz = linia.strip().split()
-                except ValueError:  # plik źródłowy zawiera błędne linie bez klucza
-                    continue
-                wyniki.write(f"{cezar(szyfr, -int(klucz))}\n")
+            try:
+                szyfr, klucz = linia.strip().split()
+            except ValueError:  # plik źródłowy zawiera błędne linie bez klucza
+                continue
+            wyniki.write(f"{cezar(szyfr, -int(klucz))}\n")
 
 
 def podpunkt_3():
