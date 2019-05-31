@@ -3,24 +3,8 @@
 
 
 def cezar(napis: str, klucz: int) -> str:
-    # W ramach prezentacji kliku trików postanowiłem nie używać słowa kluczowego 'if' w tej funkcji
+    return ''.join(chr(ord('A') + (ord(l) + klucz - ord('A')) % 26) for l in napis)
 
-    klucz = (-1 * (klucz < 0) or 1) * (abs(klucz) % 26)
-    wynik = []
-
-    for lit in napis.upper():
-        num = ord(lit) + klucz
-        num = num + 26 * ((num < ord('A')) - (num > ord('Z')))
-        wynik.append(chr(num))
-    return ''.join(wynik)
-
-
-### Poniżej wersja wymagająca Pythona 3.8
-
-# def cezar(napis: str, klucz: int) -> str:
-#     klucz = (-1 * (klucz < 0) or 1) * (abs(klucz) % 26)
-#
-#     return ''.join(chr((num:=ord(l) + klucz) + 26 * ((num < ord('A')) - (num > ord('Z')))) for l in napis.upper())
 
 def podpunkt_1():
     with open('dane_6_1.txt') as dane, open('wyniki_6_1.txt', 'w') as wyniki:
