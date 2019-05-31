@@ -19,8 +19,8 @@ def podpunkt_2():
                 szyfr, klucz = linia.strip().split()
             except ValueError:  # plik źródłowy zawiera błędne linie bez klucza
                 print(f"Błędne dane: {linia}")
-                continue
-            wyniki.write(f"{cezar(szyfr, -int(klucz))}\n")
+            else:
+                wyniki.write(f"{cezar(szyfr, -int(klucz))}\n")
 
 
 def podpunkt_3():
@@ -30,11 +30,11 @@ def podpunkt_3():
                 wyraz, szyfr = linia.strip().split()
             except ValueError:
                 print(f"Błędne dane: {linia}")
-                continue
-            klucz = ord(szyfr[0]) - ord(wyraz[0])
-            spr = cezar(wyraz, klucz)
-            if spr != szyfr:
-                wyniki.write(f'{wyraz}\n')
+            else:
+                klucz = ord(szyfr[0]) - ord(wyraz[0])
+                spr = cezar(wyraz, klucz)
+                if spr != szyfr:
+                    wyniki.write(f'{wyraz}\n')
 
 
 if __name__ == '__main__':
