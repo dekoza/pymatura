@@ -11,18 +11,34 @@ def wczytaj(nazwa):
 
 def podpunkt_a(lista):
     zliczacz = Counter(lista)
+    # samotni = sum(1 for k, v in zliczacz.items() if v > 1)  # SKROTOWIEC
+    samotni = 0
+    for klucz, wartosc in zliczacz.items():
+        if wartosc > 1:
+            samotni += 1
+    # /SKRÓTOWIEC
     return {
-        "ile_niesamotnych": sum(1 for k, v in zliczacz.items() if v > 1),
+        "ile_niesamotnych": samotni,
         "najczestszy": zliczacz.most_common(1)[0],
     }
 
 
 def podpunkt_b(lista):
-    return sum(1 for i in lista if i[-1] in "ACE")
+    # return sum(1 for i in lista if i[-1] in "ACE")  # SKROTOWIEC
+    suma = 0
+    for i in lista:
+        if i[-1] in "ACE":
+            suma += 1
+    return suma
 
 
 def podpunkt_c(lista):
-    return sum(1 for i in lista if i == i[::-1])
+    # return sum(1 for i in lista if i == i[::-1])  # SKROTOWIEC
+    suma = 0
+    for i in lista:
+        if i == i[::-1]:
+            suma += 1
+    return suma
 
 
 if __name__ == '__main__':

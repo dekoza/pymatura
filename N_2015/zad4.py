@@ -5,11 +5,22 @@ from collections import Counter
 
 def wczytaj(nazwa):
     with open(nazwa) as plik:
-        return list(map(str.strip, plik))
+        # return list(map(str.strip, plik))  # SKRÓTOWIEC
+
+        wynik = []
+        for linia in plik:
+            wynik.append(linia.strip())
+        return wynik
 
 
 def przezerowane(liczby):
-    return sum(1 for i in liczby if Counter(i).most_common(1)[0][0] == '0')
+    # return sum(1 for i in liczby if Counter(i).most_common(1)[0][0] == '0')  # SKRÓTOWIEC
+
+    suma = 0
+    for i in liczby:
+        if Counter(i).most_common(1)[0][0] == '0':
+            suma += 1
+    return suma
 
 
 def podzielne(liczby):
@@ -41,5 +52,5 @@ if __name__ == '__main__':
     print(f"Liczb mających więcej zer niż jedynek: {przezerowane(liczby)}.")
     print(f"Liczb podzielnych przez 2: {wynik['2']}.")
     print(f"Liczb podzielnych przez 8: {wynik['8']}.")
-    print(f'Najmniejsza liczba znajduje się w wierszu {gdzie_min+1}')  # bo w życiu liczymy od 1
-    print(f'Największa liczba znajduje się w wierszu {gdzie_max+1}')
+    print(f'Najmniejsza liczba znajduje się w wierszu {gdzie_min + 1}')  # bo w życiu liczymy od 1
+    print(f'Największa liczba znajduje się w wierszu {gdzie_max + 1}')

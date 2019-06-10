@@ -7,14 +7,14 @@ class SitoE:
 
     def __init__(self, nmax: int):
         self._nmax = nmax
-        self._cache = {i: True for i in range(2, nmax + 1)}
+        self._primes = {i: True for i in range(2, nmax + 1)}
         g = int(math.sqrt(nmax)) + 1
 
         for i in range(2, g):
-            if self._cache[i]:
+            if self._primes[i]:
                 w = i * i
                 while w <= nmax:
-                    self._cache[w] = False
+                    self._primes[w] = False
                     w += i
 
     def __contains__(self, item: int) -> bool:
@@ -23,22 +23,39 @@ class SitoE:
             raise TypeError(f'Nieprawidłowy typ ({type(item)})')
         if item > self._nmax:
             raise ValueError(f'Sprawdzana wartość ({item}) poza zakresem sita ({self._nmax}).')
-        return self._cache.get(item, False)
+        return self._primes.get(item, False)
 
 
 sito = SitoE(1006700)
 
 
 def suprime(liczba: int) -> bool:
-    return liczba in sito and sum(int(i) for i in str(liczba)) in sito
+    # return liczba in sito and sum(int(i) for i in str(liczba)) in sito  # SKROTOWIEC
+
+    suma = 0
+    for i in str(liczba):
+        suma += int(i)
+    return liczba in sito and suma in sito
 
 
 def suBrime(liczba: int) -> bool:
-    return suprime(liczba) and sum(int(i) for i in f'{liczba:b}') in sito
+    # return suprime(liczba) and sum(int(i) for i in f'{liczba:b}') in sito  # SKROTOWIEC
+
+    zapis_binarny = f'{liczba:b}'
+    suma = 0
+    for i in zapis_binarny:
+        suma += int(i)
+    return suprime(liczba) and suma in sito
 
 
 def ile_suBrimes(start: int, stop: int) -> int:
-    return sum(1 for i in range(start, stop + 1) if suBrime(i))
+    # return sum(1 for i in range(start, stop + 1) if suBrime(i))  # SKROTOWIEC
+
+    suma = 0
+    for i in range(start, stop + 1):
+        if suBrime(i):
+            suma += 1
+    return suma
 
 
 def podpunkt_a():

@@ -3,7 +3,16 @@
 
 
 def cezar(napis: str, klucz: int) -> str:
-    return ''.join(chr(ord('A') + (ord(l) + klucz - ord('A')) % 26) for l in napis)
+    # return ''.join(chr(ord('A') + (ord(l) + klucz - ord('A')) % 26) for l in napis)# SKRÓTOWIEC
+    klej = ''
+    literki = []
+    for l in napis:
+        kod_ascii = ord(l)
+        zakodowane = (kod_ascii + klucz - ord('A')) % 26  # przesunięcie & zapętlenie
+        kod_wynikowy = ord('A') + zakodowane
+        litera = chr(kod_wynikowy)
+        literki += litera
+    return klej.join(literki)  # literki zostaną połączone w jeden napis, porozdzielane "klejem"
 
 
 def podpunkt_1():
