@@ -17,8 +17,7 @@ def cezar(napis: str, klucz: int) -> str:
 
 def podpunkt_1():
     with open('dane_6_1.txt') as dane, open('wyniki_6_1.txt', 'w') as wyniki:
-        for napis in dane:
-            wyniki.write(f"{cezar(napis.strip(), 107)}\n")
+        [wyniki.write(f"{cezar(napis.strip(), 107)}\n") for napis in dane]
 
 
 def podpunkt_2():
@@ -41,10 +40,7 @@ def podpunkt_3():
                 print(f"Błędne dane: {linia}")
             else:
                 klucz = ord(szyfr[0]) - ord(wyraz[0])
-                spr = cezar(wyraz, klucz)
-                if spr != szyfr:
-                    wyniki.write(f'{wyraz}\n')
-
+                wyniki.write(f'{wyraz}\n') if cezar(wyraz, klucz) != szyfr else None
 
 if __name__ == '__main__':
     podpunkt_1()
