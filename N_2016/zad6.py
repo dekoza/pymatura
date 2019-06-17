@@ -4,25 +4,27 @@
 
 def cezar(napis: str, klucz: int) -> str:
     # return ''.join(chr(ord('A') + (ord(l) + klucz - ord('A')) % 26) for l in napis)# SKRÓTOWIEC
-    klej = ''
+    klej = ""
     literki = []
     for l in napis:
         kod_ascii = ord(l)
-        zakodowane = (kod_ascii + klucz - ord('A')) % 26  # przesunięcie & zapętlenie
-        kod_wynikowy = ord('A') + zakodowane
+        zakodowane = (kod_ascii + klucz - ord("A")) % 26  # przesunięcie & zapętlenie
+        kod_wynikowy = ord("A") + zakodowane
         litera = chr(kod_wynikowy)
         literki += litera
-    return klej.join(literki)  # literki zostaną połączone w jeden napis, porozdzielane "klejem"
+    return klej.join(
+        literki
+    )  # literki zostaną połączone w jeden napis, porozdzielane "klejem"
 
 
 def podpunkt_1():
-    with open('dane_6_1.txt') as dane, open('wyniki_6_1.txt', 'w') as wyniki:
+    with open("dane_6_1.txt") as dane, open("wyniki_6_1.txt", "w") as wyniki:
         for napis in dane:
             wyniki.write(f"{cezar(napis.strip(), 107)}\n")
 
 
 def podpunkt_2():
-    with open('dane_6_2.txt') as dane, open('wyniki_6_2.txt', 'w') as wyniki:
+    with open("dane_6_2.txt") as dane, open("wyniki_6_2.txt", "w") as wyniki:
         for linia in dane:
             try:
                 szyfr, klucz = linia.strip().split()
@@ -33,7 +35,7 @@ def podpunkt_2():
 
 
 def podpunkt_3():
-    with open('dane_6_3.txt') as dane, open('wyniki_6_3.txt', 'w') as wyniki:
+    with open("dane_6_3.txt") as dane, open("wyniki_6_3.txt", "w") as wyniki:
         for linia in dane:
             try:
                 wyraz, szyfr = linia.strip().split()
@@ -43,10 +45,10 @@ def podpunkt_3():
                 klucz = ord(szyfr[0]) - ord(wyraz[0])
                 spr = cezar(wyraz, klucz)
                 if spr != szyfr:
-                    wyniki.write(f'{wyraz}\n')
+                    wyniki.write(f"{wyraz}\n")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     podpunkt_1()
     podpunkt_2()
     podpunkt_3()

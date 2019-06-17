@@ -18,7 +18,7 @@ def przezerowane(liczby):
 
     suma = 0
     for i in liczby:
-        if Counter(i).most_common(1)[0][0] == '0':
+        if Counter(i).most_common(1)[0][0] == "0":
             suma += 1
     return suma
 
@@ -27,12 +27,12 @@ def podzielne(liczby):
     przez_2 = 0
     przez_8 = 0
     for liczba in liczby:
-        if liczba[-1] == '0':
+        if liczba[-1] == "0":
             przez_2 += 1
-        if liczba[-3:] == '000':
+        if liczba[-3:] == "000":
             przez_8 += 1
 
-    return {'2': przez_2, '8': przez_8}
+    return {"2": przez_2, "8": przez_8}
 
 
 def gdzie_minmax(liczby):
@@ -43,8 +43,8 @@ def gdzie_minmax(liczby):
     return gdzie_min, gdzie_max
 
 
-if __name__ == '__main__':
-    liczby = wczytaj('liczby.txt')
+if __name__ == "__main__":
+    liczby = wczytaj("liczby.txt")
 
     wynik = podzielne(liczby)
     gdzie_min, gdzie_max = gdzie_minmax(liczby)
@@ -52,5 +52,7 @@ if __name__ == '__main__':
     print(f"Liczb mających więcej zer niż jedynek: {przezerowane(liczby)}.")
     print(f"Liczb podzielnych przez 2: {wynik['2']}.")
     print(f"Liczb podzielnych przez 8: {wynik['8']}.")
-    print(f'Najmniejsza liczba znajduje się w wierszu {gdzie_min + 1}')  # bo w życiu liczymy od 1
-    print(f'Największa liczba znajduje się w wierszu {gdzie_max + 1}')
+    print(
+        f"Najmniejsza liczba znajduje się w wierszu {gdzie_min + 1}"
+    )  # bo w życiu liczymy od 1
+    print(f"Największa liczba znajduje się w wierszu {gdzie_max + 1}")

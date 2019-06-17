@@ -20,9 +20,11 @@ class SitoE:
     def __contains__(self, item: int) -> bool:
         # pozwala użyć operatora 'in' do sprawdzenia, czy liczba jest pierwsza
         if not isinstance(item, int):
-            raise TypeError(f'Nieprawidłowy typ ({type(item)})')
+            raise TypeError(f"Nieprawidłowy typ ({type(item)})")
         if item > self._nmax:
-            raise ValueError(f'Sprawdzana wartość ({item}) poza zakresem sita ({self._nmax}).')
+            raise ValueError(
+                f"Sprawdzana wartość ({item}) poza zakresem sita ({self._nmax})."
+            )
         return self._primes.get(item, False)
 
 
@@ -41,7 +43,7 @@ def suprime(liczba: int) -> bool:
 def suBrime(liczba: int) -> bool:
     # return suprime(liczba) and sum(int(i) for i in f'{liczba:b}') in sito  # SKROTOWIEC
 
-    zapis_binarny = f'{liczba:b}'
+    zapis_binarny = f"{liczba:b}"
     suma = 0
     for i in zapis_binarny:
         suma += int(i)
@@ -70,9 +72,11 @@ def podpunkt_b():
 
     translator = {False: "NIE", True: "TAK"}
     test_sumy = sum(i for i in range(100, 10000) if suBrime(i)) in sito
-    print(f"Czy suma liczb superB z danego przedziału jest pierwsza? {translator[test_sumy]}")
+    print(
+        f"Czy suma liczb superB z danego przedziału jest pierwsza? {translator[test_sumy]}"
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     podpunkt_a()
     podpunkt_b()
