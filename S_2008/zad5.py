@@ -30,7 +30,7 @@ def podpunkt_a(dane):
 def koduj(slowo):
     for i in range(len(slowo), 0, -1):
         if slowo[:i] == slowo[:i][::-1]:
-            return slowo[i:][::-1] + slowo
+            return f"{slowo[i:][::-1]}{slowo}"
 
 
 def szukaj_len(dane, var):
